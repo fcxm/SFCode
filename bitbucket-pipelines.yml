@@ -1,0 +1,9 @@
+# ----- 
+image: johnjvester/docker-salesforce
+pipelines:
+  default:
+    - step:
+        script:
+          - echo "Deploying Code to the Test Org..."
+          - ant deployFocalCode
+          - ant postToChat -Dcommit.id=$BITBUCKET_COMMIT -Dbranch.id=$BITBUCKET_BRANCH -Dcommit.user=$BITBUCKET_STEP_TRIGGERER_UUID
